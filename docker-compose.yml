@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pnlinh/domain2
+    hostname: "${DOCKER_PREFIX_NAME}-app"
+    container_name: "${DOCKER_PREFIX_NAME}-app"
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_ENV=development
+    command: /bin/sh -c 'npm install && npm run debug'
+    ports:
+      - "${DOCKER_APP_DEBUG_PORT:-9229}:9229"
+    networks:
+      - sso
+
+  redis-2:
+    image: redis:alpine
+    container_name: "${DOCKER_PREFIX_NAME}-redis"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      retries: 3
+      timeout: 5s
+    networks:
+      - sso
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  sso:
+    external: true
+    name: sso

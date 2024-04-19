@@ -1,0 +1,27 @@
+{
+  "name": "domain2",
+  "version": "1.0.0",
+  "description": "Node Application for OIDC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "debug": "node --watch --inspect=0.0.0.0:9229 src/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-ensure-login": "^0.1.1",
+    "connect-redis": "^7.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.0",
+    "ioredis": "^5.4.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-openidconnect": "^0.1.2"
+  }
+}
